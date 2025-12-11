@@ -1,145 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LaggyTCG</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LaggyTCG — Trusted Card Seller</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="IMG_5538.ico">
+  <!-- favicon (upload favicon.ico to repo root) -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+  <!-- Social preview -->
+  <meta property="og:title" content="LaggyTCG — Trusted Card Seller">
+  <meta property="og:description" content="Premium trading card seller — fast shipping, trusted feedback. Shop my listings and contact me.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://laggytcg.com/logo-wide.png">
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #111; /* Black background */
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+    :root{
+      --bg:#070607;
+      --panel:#0f0f10;
+      --muted:#bdbdbd;
+      --accent:#d00000;
+      --accent-dark:#9a0000;
+      --glow1: rgba(208,0,0,0.14);
+      --glass: rgba(255,255,255,0.03);
+      --card-border: linear-gradient(90deg, rgba(208,0,0,0.14), rgba(120,0,140,0.08), rgba(0,120,200,0.06));
     }
 
-    header {
-      background-color: #000;
-      width: 100%;
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 3px solid #d00000; /* Red underline */
+    /* Reset + layout */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      background: radial-gradient(1200px 400px at 10% 10%, rgba(200,0,40,0.03), transparent 6%),
+                  radial-gradient(900px 300px at 90% 80%, rgba(0,120,200,0.02), transparent 8%),
+                  var(--bg);
+      color:#fff;
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:28px 16px;
+      -webkit-font-smoothing:antialiased;
     }
 
-    /* NEW FIXED LOGO STYLES */
-    .logo-container {
-      width: 100%;
-      max-width: 420px;   /* Larger desktop size */
-      margin: 0 auto 20px auto;
+    /* page container */
+    .wrap{
+      width:100%;
+      max-width:760px;
     }
 
-    .logo-container img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;         /* remove if unwanted */
-      border: 2px solid #d00000;   /* red border */
+    /* header / hero */
+    header{
+      text-align:center;
+      margin-bottom:20px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #d00000; /* Red header text */
+    /* subtle animated holo behind logo */
+    .hero {
+      position:relative;
+      padding:28px 18px;
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02) inset;
+      border:1px solid rgba(255,255,255,0.02);
+      overflow:hidden;
     }
 
-    header p {
-      font-size: 1.1rem;
-      margin-top: 8px;
-      color: #ccc;
+    /* holo layer */
+    .holo {
+      position:absolute;
+      inset: -40% -30% auto -30%;
+      height:220%;
+      background: conic-gradient(from 200deg at 50% 50%,
+        rgba(208,0,0,0.07),
+        rgba(120,0,140,0.06),
+        rgba(0,120,200,0.05),
+        rgba(208,0,0,0.07));
+      filter: blur(30px) saturate(120%);
+      opacity:0.45;
+      transform: translateZ(0);
+      animation: holoShift 8s linear infinite;
+      pointer-events:none;
     }
 
-    main {
-      margin: 30px 20px;
-      width: 100%;
-      max-width: 550px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #1a1a1a;
-      padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
-      border: 1px solid #d00000;
+    @keyframes holoShift {
+      0%{transform: translateX(-8%) translateY(0) rotate(0deg)}
+      50%{transform: translateX(8%) translateY(-3%) rotate(2deg)}
+      100%{transform: translateX(-8%) translateY(0) rotate(0deg)}
     }
 
-    .links {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-top: 10px;
+    /* logo container fits image and keeps aspect */
+    .logo-container{
+      width:100%;
+      max-width:460px;
+      margin:0 auto 16px;
+      display:block;
+      position:relative;
+      z-index:2;
+      padding:8px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 6px 22px rgba(2,2,2,0.6);
     }
 
-    .link-button {
-      background-color: #d00000;
-      color: white;
-      text-decoration: none;
-      text-align: center;
-      padding: 15px;
-      margin: 8px 0;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.25s ease;
-      box-shadow: 0px 3px 8px rgba(208,0,0,0.3);
+    .logo-container img{
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      border-radius:8px;
     }
 
-    .link-button:hover {
-      background-color: #b00000;
-      box-shadow: 0px 4px 10px rgba(208,0,0,0.5);
-      transform: translateY(-2px);
+    /* title */
+    .title {
+      margin-top:8px;
+      font-size:1.9rem;
+      font-weight:700;
+      color:var(--accent);
+      letter-spacing:0.6px;
+      z-index:3;
+      position:relative;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.7);
+    }
+    .subtitle {
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:0.95rem;
     }
 
-    footer {
-      margin-top: auto;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #888;
-      text-align: center;
+    /* main card */
+    .card {
+      margin-top:18px;
+      padding:22px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.06));
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      position:relative;
+      overflow:visible;
+    }
+    /* holographic rim */
+    .card:before{
+      content:"";
+      pointer-events:none;
+      position:absolute;
+      inset:-2px;
+      border-radius:16px;
+      background: var(--card-border);
+      opacity:0.45;
+      filter: blur(8px) saturate(120%);
+      z-index:-1;
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      header p { font-size: 1rem; }
-      .link-button { padding: 12px; font-size: 1rem; }
+    /* Links */
+    .links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:6px;
+    }
+
+    .link-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:10px;
+      font-weight:700;
+      text-decoration:none;
+      color:#fff;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      border: 1px solid rgba(255,255,255,0.04);
+      position:relative;
+      overflow:hidden;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+
+    /* Foil stripe overlay on buttons */
+    .link-button:before{
+      content:"";
+      position:absolute;
+      left:-60%;
+      top:-40%;
+      width:220%;
+      height:220%;
+      transform: rotate(-18deg);
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0.08) 0%,
+        rgba(255,255,255,0.14) 20%,
+        rgba(255,255,255,0.02) 40%,
+        rgba(255,255,255,0.00) 60%,
+        rgba(255,255,255,0.06) 100%);
+      opacity:0.12;
+      transition: left .9s cubic-bezier(.2,.9,.2,1);
+      will-change:left;
+      pointer-events:none;
+    }
+
+    .link-button .label{
+      z-index:2;
+      color:#fff;
+    }
+
+    .link-cta {
+      background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+      box-shadow: 0 6px 18px rgba(208,0,0,0.22);
+      border:1px solid rgba(0,0,0,0.35);
+    }
+
+    .link-cta:hover:before{ left: -20% }
+    .link-cta:active{ transform: translateY(1px) scale(.998) }
+
+    .link-ghost{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .link-ghost:hover:before{ left:-20% }
+
+    /* small helper line */
+    .note { color:var(--muted); font-size:0.9rem; margin-top:12px; text-align:center }
+
+    footer{
+      margin:20px 0 6px;
+      color: #999;
+      text-align:center;
+      font-size:0.9rem;
+    }
+
+    /* responsive */
+    @media (max-width:640px){
+      .logo-container{ max-width:320px; padding:6px }
+      .title{ font-size:1.5rem }
+      .card{ padding:18px }
+      .link-button{ padding:12px 14px; font-size:0.98rem }
     }
   </style>
-
 </head>
+
 <body>
+  <div class="wrap">
+    <header>
+      <div class="hero" role="banner" aria-hidden="false">
+        <div class="holo" aria-hidden="true"></div>
 
-  <header>
+        <!-- logo (upload logo-wide.png at repo root) -->
+        <div class="logo-container" aria-hidden="false">
+          <img src="logo-wide.png" alt="LaggyTCG logo">
+        </div>
 
-    <!-- FIXED LOGO BLOCK -->
-    <div class="logo-container">
-      <img src="logo-wide.png" alt="LaggyTCG Logo">
-    </div>
+        <div class="title">LaggyTCG</div>
+        <div class="subtitle">Premium trading card seller — trusted feedback & prompt shipping</div>
+      </div>
+    </header>
 
-    <h1>LaggyTCG</h1>
-    <p>Trusted Online Seller • TCG • Collectibles</p>
-  </header>
+    <main class="card" role="main">
+      <div class="links" aria-label="Links to shops">
+        <a class="link-button link-cta" href="https://shop.tcgplayer.com/sellerfeedback/04ec5f85" target="_blank" rel="noopener">
+          <span class="label">TCGplayer</span>
+        </a>
 
-  <main>
-    <div class="links">
-      <a class="link-button" href="https://shop.tcgplayer.com/sellerfeedback/04ec5f85" target="_blank">TCG Player</a>
-      <a class="link-button" href="https://www.ebay.com/usr/stay_laggy" target="_blank">eBay</a>
-      <a class="link-button" href="https://www.grailed.com/stay_laggy/feedback" target="_blank">Grailed</a>
-      <a class="link-button" href="mailto:support@laggytcg.com">Email Me</a>
-    </div>
-  </main>
+        <a class="link-button link-cta" href="https://www.ebay.com/usr/stay_laggy" target="_blank" rel="noopener">
+          <span class="label">eBay</span>
+        </a>
 
-  <footer>
-    &copy; 2025 LaggyTCG. All rights reserved.
-  </footer>
+        <a class="link-button link-ghost" href="https://www.grailed.com/stay_laggy/feedback" target="_blank" rel="noopener">
+          <span class="label">Grailed</span>
+        </a>
 
+        <!-- StockX / GOAT note button (if direct profile isn't public) -->
+        <a class="link-button link-ghost" href="#" onclick="alert('StockX/GOAT public seller links are not available. Contact me for verifications and receipts.'); return false;">
+          <span class="label">StockX / GOAT — Ask For Verification</span>
+        </a>
+
+        <a class="link-button link-ghost" href="mailto:support@laggytcg.com">
+          <span class="label">Email — support@laggytcg.com</span>
+        </a>
+      </div>
+
+      <div class="note">Have questions? Message me on eBay or email for fast responses.</div>
+    </main>
+
+    <footer>&copy; 2025 LaggyTCG — Collector-first service</footer>
+  </div>
 </body>
 </html>
