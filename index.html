@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LaggyTCG</title>
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="IMG_5538.ico">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -28,20 +31,20 @@
       border-bottom: 3px solid #d00000; /* Red underline */
     }
 
-    /* Logo container */
-   .logo-container {
-  display: inline-block;
-  max-width: 300px;   /* desktop limit */
-  width: 100%;        /* scale down on smaller screens */
-}
+    /* NEW FIXED LOGO STYLES */
+    .logo-container {
+      width: 100%;
+      max-width: 420px;   /* Larger desktop size */
+      margin: 0 auto 20px auto;
+    }
 
-.logo-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-
+    .logo-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;         /* remove if unwanted */
+      border: 2px solid #d00000;   /* red border */
+    }
 
     header h1 {
       margin: 0;
@@ -116,10 +119,9 @@
 
   <header>
 
-    <!-- LOGO AREA -->
-    <!-- Replace logo.png with your actual logo file -->
-    <div class="logo-box">
-      <img src="logo-wide.png" alt="logo-wide">
+    <!-- FIXED LOGO BLOCK -->
+    <div class="logo-container">
+      <img src="logo-wide.png" alt="LaggyTCG Logo">
     </div>
 
     <h1>LaggyTCG</h1>
