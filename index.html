@@ -68,14 +68,16 @@
       border:1px solid rgba(255,255,255,0.02); box-shadow: 0 10px 30px rgba(0,0,0,0.55); position:relative; overflow:visible;}
     .card:before{content:""; pointer-events:none; position:absolute; inset:-2px; border-radius:16px; background: var(--card-border); opacity:0.45; filter: blur(8px) saturate(120%); z-index:-1;}
 
-    /* GRID layout for buttons */
-    .links{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:6px;}
+    /* Marketplace sections */
+    .marketplace { margin-bottom:16px; }
+    .market-label { font-weight:700; color:var(--accent); margin-bottom:6px; font-size:1.1rem; text-align:center; }
+    .market-links{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
 
     .link-button{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:14px 16px;
+      padding:12px 16px;
       border-radius:10px;
       font-weight:700;
       text-decoration:none;
@@ -94,6 +96,8 @@
     .link-button:hover:before{ left:-20% }
     .link-button:active{ transform: translateY(1px) scale(.998) }
 
+    .email-link{width:100%; text-align:center; margin-top:20px;}
+
     .note{color:var(--muted); font-size:0.9rem; margin-top:12px; text-align:center}
     footer{margin:20px 0 6px; color: #999; text-align:center; font-size:0.9rem;}
 
@@ -101,8 +105,8 @@
       .logo-container{ max-width:320px; padding:6px }
       .title{ font-size:1.5rem }
       .card{ padding:18px }
-      .links{grid-template-columns: repeat(1,1fr);}
-      .link-button{ padding:12px 14px; font-size:0.98rem }
+      .market-links{flex-direction:column; align-items:center;}
+      .link-button{width:180px; margin-bottom:6px;}
     }
   </style>
 </head>
@@ -121,21 +125,36 @@
     </header>
 
     <main class="card">
-      <div class="links">
-        <!-- TCGplayer buttons -->
-        <a class="link-button" href="https://shop.tcgplayer.com/sellerfeedback/04ec5f85" target="_blank">TCGplayer</a>
-        <a class="link-button" href="https://shop.tcgplayer.com/seller/04ec5f85" target="_blank">Listings</a>
-        <a class="link-button" href="https://shop.tcgplayer.com/sellerfeedback/04ec5f85" target="_blank">Feedback</a>
+      <!-- TCGplayer -->
+      <div class="marketplace">
+        <div class="market-label">TCGplayer</div>
+        <div class="market-links">
+          <a class="link-button" href="https://shop.tcgplayer.com/seller/04ec5f85" target="_blank">Listings</a>
+          <a class="link-button" href="https://shop.tcgplayer.com/sellerfeedback/04ec5f85" target="_blank">Feedback</a>
+        </div>
+      </div>
 
-        <!-- eBay buttons -->
-        <a class="link-button" href="https://www.ebay.com/usr/stay_laggy" target="_blank">eBay</a>
-        <a class="link-button" href="https://www.ebay.com/sch/stay_laggy/m.html" target="_blank">Listings</a>
-        <a class="link-button" href="https://www.ebay.com/usr/stay_laggy#feedback" target="_blank">Feedback</a>
+      <!-- eBay -->
+      <div class="marketplace">
+        <div class="market-label">eBay</div>
+        <div class="market-links">
+          <a class="link-button" href="https://www.ebay.com/sch/stay_laggy/m.html" target="_blank">Listings</a>
+          <a class="link-button" href="https://www.ebay.com/usr/stay_laggy#feedback" target="_blank">Feedback</a>
+        </div>
+      </div>
 
-        <!-- Grailed buttons -->
-        <a class="link-button" href="https://www.grailed.com/stay_laggy/feedback" target="_blank">Grailed</a>
-        <a class="link-button" href="https://www.grailed.com/stay_laggy" target="_blank">Listings</a>
-        <a class="link-button" href="https://www.grailed.com/stay_laggy/feedback" target="_blank">Feedback</a>
+      <!-- Grailed -->
+      <div class="marketplace">
+        <div class="market-label">Grailed</div>
+        <div class="market-links">
+          <a class="link-button" href="https://www.grailed.com/stay_laggy" target="_blank">Listings</a>
+          <a class="link-button" href="https://www.grailed.com/stay_laggy/feedback" target="_blank">Feedback</a>
+        </div>
+      </div>
+
+      <!-- Full-width email -->
+      <div class="email-link">
+        <a class="link-button" href="mailto:support@laggytcg.com">Email Me — support@laggytcg.com</a>
       </div>
 
       <div class="note">Have questions? Message me on eBay or email for fast responses.</div>
